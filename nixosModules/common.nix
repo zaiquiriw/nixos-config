@@ -1,6 +1,6 @@
 # nixosModules/common.nix
 
-{ config, pkgs, lib, config, ... }: {
+{ config, pkgs, lib, ... }: {
     options = {
         common.enable =
             lib.mkEnableOption "Enable common.nix";
