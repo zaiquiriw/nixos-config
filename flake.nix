@@ -1,3 +1,5 @@
+# flake.nix
+
 {
   description = "NixOS configuration with two or more channels";
 
@@ -17,23 +19,29 @@
 
       };
     in {
+      # This evaluates the nixosModules.nix file and makes the nixosModules
+      # attribute available in the configuration.nix file through the "inputs"
+      # attribute.
+      nixosModules = import ./nixosModules;
+
       nixosConfigurations = {
         zephyr = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {inherit inputs;};
-            modules = [
-            # Overlays-module makes "pkgs.unstable" available in configuration.nix
+          inherit system;
+          specialArgs = {inherit inputs;};
+          modules = [
+          # Overlays-module makes "pkgs.unstable" available in configuration.nix
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-            ./hosts/zephyr/common.nix
-            ];
+            ./hosts/zephyr/configuration.nix  
+          ];
         };
         theoreticalHost = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {inherit inputs;};
-            modules = [
+          inherit system;
+          specialArgs = {inherit inputs;};
+          modules = [
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/theoreticalHost/configuration.nix
-            ];
+          ];
         };
+      };
     };
 }
