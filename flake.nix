@@ -19,11 +19,6 @@
 
       };
     in {
-      # This evaluates the nixosModules.nix file and makes the nixosModules
-      # attribute available in the configuration.nix file through the "inputs"
-      # attribute.
-      nixosModules = import ./nixosModules;
-
       nixosConfigurations = {
         zephyr = nixpkgs.lib.nixosSystem {
           inherit system;

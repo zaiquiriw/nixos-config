@@ -1,9 +1,9 @@
 # nixosModules/default.nix
 
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
     imports = [
         ./common.nix
-    ]
+    ];
 
     common.enable = lib.mkDefault true;
 }
