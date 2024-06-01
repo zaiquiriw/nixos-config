@@ -46,7 +46,7 @@
 
       homeConfigurations = {
         zaiq = home-manager.lib.homeManagerConfiguration {
-          inherit system;
+          inherit system pkgs;
           specialArgs = {inherit inputs;};
           modules = [
             ./users/zaiq/home.nix
