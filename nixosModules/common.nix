@@ -10,6 +10,7 @@
     config = lib.mkIf config.common.enable {
         environment.systemPackages = with pkgs; [
             git
+            unstable.home-manager
         ];
     };
 }
