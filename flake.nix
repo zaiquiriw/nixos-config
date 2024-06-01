@@ -6,9 +6,14 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager }:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
@@ -35,6 +40,16 @@
           modules = [
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/theoreticalHost/configuration.nix
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        zaiq = home-manager.lib.homeManagerConfiguration {
+          inherit system;
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./users/zaiq/home.nix
           ];
         };
       };
