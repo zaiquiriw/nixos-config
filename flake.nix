@@ -8,8 +8,8 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -46,7 +46,6 @@
 
       homeConfigurations = {
         zaiq = home-manager.lib.homeManagerConfiguration {
-          inherit system;
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = {inherit inputs;};
           modules = [

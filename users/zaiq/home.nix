@@ -8,7 +8,7 @@
   
     home.packages = [
         pkgs.neovim
-        nixpkgs.unstable.git
+        pkgs.git
     ];
 
     home.sessionVariables = {
@@ -17,7 +17,7 @@
 
     home.file = {
         # Add some custom files here
-    }
+    };
 
     home.stateVersion = "24.05";
     programs.home-manager.enable = true;
