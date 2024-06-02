@@ -21,13 +21,6 @@
   # Copy config folder into etc of the new system
   environment.etc."nixos-config".source = ../..;
 
-  # Include your Home Manager configuration
-  system.activationScripts.home-manager = {
-    text = ''
-      ${pkgs.home-manager}/bin/home-manager switch
-    '';
-  };
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
