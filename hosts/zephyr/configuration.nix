@@ -18,6 +18,14 @@
     initialPassword = "test";
   };
 
+  virtualisation.vmVariant = {
+    # following configuration is added only when building VM with build-vm
+    virtualisation = {
+      memorySize =  4096; # Use 2048MiB memory.
+      cores = 3;         
+    };
+  };
+
   # Copy config folder into etc of the new system
   environment.etc."nixos-config".source = ../..;
 
