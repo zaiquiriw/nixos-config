@@ -1,2 +1,4 @@
-nixos.qcow2
+*.qcow2
 result
+hosts/*/secrets/*
+!hosts/*/secrets/readme.md

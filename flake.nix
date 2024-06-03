@@ -11,9 +11,14 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, agenix}:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
@@ -31,7 +36,8 @@
           modules = [
           # Overlays-module makes "pkgs.unstable" available in configuration.nix
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-            ./hosts/zephyr/configuration.nix  
+            ./hosts/zephyr/configuration.nix
+            agenix.nixosModules.default
           ];
         };
         theoreticalHost = nixpkgs.lib.nixosSystem {
@@ -40,6 +46,7 @@
           modules = [
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/theoreticalHost/configuration.nix
+            agenix.nixosModules.default
           ];
         };
       };
