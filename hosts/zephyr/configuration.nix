@@ -35,9 +35,9 @@ in {
   };
 
   # Access inputs from the flake to add agenix
-  environment.systemPackages = [
-    inputs.agenix.packages."${system}".default
-  ];
+  # environment.systemPackages = [
+  #  inputs.agenix.packages."${system}".default
+  # ];
 
   virtualisation.vmVariant = {
     # following configuration is added only when building VM with build-vm

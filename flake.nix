@@ -12,13 +12,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    # agenix = {
+    #   url = "github:ryantm/agenix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, agenix}:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, sops-nix }:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
@@ -37,7 +42,8 @@
           # Overlays-module makes "pkgs.unstable" available in configuration.nix
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/zephyr/configuration.nix
-            agenix.nixosModules.default
+            # agenix.nixosModules.default
+            sops-nix.nixosModules.sops
           ];
         };
         theoreticalHost = nixpkgs.lib.nixosSystem {
@@ -46,7 +52,7 @@
           modules = [
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/theoreticalHost/configuration.nix
-            agenix.nixosModules.default
+            # agenix.nixosModules.default
           ];
         };
       };
