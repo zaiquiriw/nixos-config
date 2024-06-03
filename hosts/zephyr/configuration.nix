@@ -13,21 +13,25 @@ in {
     ];
 
   # Access agenix secrets
-  age = {
-    secrets = {
-      defaultPassword = {
-        file = ./secrets/primary.age;
-        owner = "root";
-        group = "root";
-      };
-    };
-  };
+  # age = {
+  #  secrets = {
+  #    zaiqPassword = {
+  #      file = ./secrets/primary.age;
+  #      owner = "zaiq";
+  #      group = "zaiq";
+  #    };
+  #  };
+  #};
+
+  # Add ssh support
+  services.openssh.enable = true;
 
   # Test if vm works and git is installed
   users.users.zaiq = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    initialPassword = config.age.secrets.defaultPassword.path;
+    initialPassword = "test";
+    # config.age.secrets.zaiqPassword.path;
   };
 
   # Access inputs from the flake to add agenix
@@ -40,9 +44,13 @@ in {
     virtualisation = {
       memorySize =  4096; # Use 2048MiB memory.
       cores = 3;   
-      sharedDirectories.config = { 
+      sharedDirectories.userSSH = { 
         source = "/home/zaiq/.ssh";
         target = "/home/zaiq/.ssh";
+      };
+      sharedDirectories.hostSSH = {
+        source = "/etc/ssh";
+        target = "/etc/ssh";
       };
     };
   };
