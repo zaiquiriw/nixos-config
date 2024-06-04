@@ -21,9 +21,16 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, sops-nix }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, sops-nix, hyprland, ... }:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
