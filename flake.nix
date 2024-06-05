@@ -79,7 +79,6 @@
       
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
-        #"aarch64-darwin"
       ];
       
       
@@ -91,14 +90,6 @@
       
       
       specialArgs = { inherit inputs outputs configVars configLib nixpkgs; };
-
-      
-      #coverlay-unstable = final: prev: {
-      #  unstable = import nixpkgs-unstable {
-      #     inherit system;
-      #     config.allowUnfree = true;
-      #  };
-      #};
 
     in {
 
@@ -142,7 +133,6 @@
           inherit specialArgs;
           modules = [
           # Overlays-module makes "pkgs.unstable" available in configuration.nix
-            # ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/zephyr
           ];
         };
@@ -151,7 +141,6 @@
         theoreticalHost = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           modules = [
-            # ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/guest
           ];
         };
