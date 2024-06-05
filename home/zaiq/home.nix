@@ -12,6 +12,8 @@
 	firefox
         kitty
 	vscode
+	discord
+	obsidian
     ];
     
     nixpkgs.config.allowUnfree = true;

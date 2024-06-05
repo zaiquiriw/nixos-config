@@ -24,6 +24,8 @@ in {
   #  };
   #};
 
+  time.timeZone = lib.mkDefault "America/Chicago";
+
   # Add ssh support
   services.openssh.enable = true;
   
@@ -36,9 +38,9 @@ in {
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland; 
   };
+ environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
 
   # Test if vm works and git is installed
   users.users.zaiq = {
