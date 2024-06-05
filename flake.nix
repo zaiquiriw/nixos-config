@@ -68,46 +68,103 @@
     nixpkgs, 
     nixpkgs-unstable, 
     home-manager, 
+    sops-nix, 
     hyprland, ... }: 
     let
-      system = "x86_64-linux";
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-           inherit system;
-           config.allowUnfree = true;
-        };
+      
+      ####################################### Convenience Utilities ###########
 
-      };
+      inherit (self) outputs;
+      
+      
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        #"aarch64-darwin"
+      ];
+      
+      
+      inherit (nixpkgs) lib;
+
+      
+      configVars = import ./vars { inherit inputs lib; };
+      configLib = import ./lib { inherit lib; };
+      
+      
+      specialArgs = { inherit inputs outputs configVars configLib nixpkgs; };
+
+      
+      #coverlay-unstable = final: prev: {
+      #  unstable = import nixpkgs-unstable {
+      #     inherit system;
+      #     config.allowUnfree = true;
+      #  };
+      #};
+
     in {
+
+      devShells = forAllSystems
+        (system:
+          let pkgs = nixpkgs.legacyPackages.${system};
+          in import ./shell.nix { inherit pkgs; }
+        );
+
+      ###################################### Modular Config Imports ###########
+
+      # Custom modules to enable special functionality for nixos or 
+      # home-manager oriented configs.
+      nixosModules = import ./nixosModules/nixos;
+      homeManagerModules = import ./homeModules/home-manager;
+
+      # Custom modifications/overrides to upstream packages.
+      overlays = import ./overlays { inherit inputs outputs; };
+
+      # Custom packages to be shared or upstreamed.
+      packages = forAllSystems
+        (system:
+          let pkgs = nixpkgs.legacyPackages.${system};
+          in import ./pkgs { inherit pkgs; }
+        );
+
+      # TODO change this to something that has better looking output rules
+      # Nix formatter available through 'nix fmt' 
+      # https://nix-community.github.io/nixpkgs-fmt
+      # formatter = forAllSystems
+      #   (system:
+      #    nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+      #   );
+
+      ################################# Host/Machine Configurations ###########
+
       nixosConfigurations = {
+
+
         zephyr = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {inherit inputs;};
+          inherit specialArgs;
           modules = [
           # Overlays-module makes "pkgs.unstable" available in configuration.nix
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+            # ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/zephyr/configuration.nix
-            # agenix.nixosModules.default
-            sops-nix.nixosModules.sops
           ];
         };
+        
+        
         theoreticalHost = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {inherit inputs;};
+          inherit specialArgs;
           modules = [
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-            ./hosts/theoreticalHost/configuration.nix
-            # agenix.nixosModules.default
+            # ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+            ./hosts/guest
           ];
         };
       };
+
+      ########################################## User Configuration ###########
 
       homeConfigurations = {
         zaiq = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = {inherit inputs;};
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {inherit inputs outputs;};
           modules = [
-            ./home/zaiq/home.nix
+            ./home/zaiq
           ];
         };
       };

@@ -3,7 +3,7 @@
 { config, pkgs, lib, ... }: {
     imports = [
         ./common.nix
-	./pipewire.nix
+	    ./pipewire.nix
     ];
 
     common.enable = lib.mkDefault true;
