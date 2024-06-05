@@ -112,8 +112,8 @@
 
       # Custom modules to enable special functionality for nixos or 
       # home-manager oriented configs.
-      nixosModules = import ./nixosModules/nixos;
-      homeManagerModules = import ./homeModules/home-manager;
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
 
       # Custom modifications/overrides to upstream packages.
       overlays = import ./overlays { inherit inputs outputs; };
@@ -143,7 +143,7 @@
           modules = [
           # Overlays-module makes "pkgs.unstable" available in configuration.nix
             # ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-            ./hosts/zephyr/configuration.nix
+            ./hosts/zephyr
           ];
         };
         

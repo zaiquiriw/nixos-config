@@ -1,4 +1,4 @@
-# nixosModules/pipewire.nix
+# hosts/common/pipewire.nix
 
 { config, pkgs, lib, ... } : {
   options = {

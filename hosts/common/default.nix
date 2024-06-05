@@ -1,4 +1,4 @@
-# nixosModules/default.nix
+# hosts/common/default.nix
 
 { config, pkgs, lib, ... }: {
     imports = [

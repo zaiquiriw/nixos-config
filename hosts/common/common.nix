@@ -1,4 +1,4 @@
-# nixosModules/common.nix
+# hosts/common/common.nix
 
 { config, pkgs, lib, ... }: {
     options = {
