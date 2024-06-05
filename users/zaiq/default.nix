@@ -4,15 +4,12 @@
 
 {
     imports = [
-      ./nixvim
-      ./basic/git.nix
-      ./basic/email.nix
-      ./hyprland
+      ./features/desktop/hyprland
     ];
 
     home = {
-      home.username = "zaiq";
-      home.homeDirectory = "/home/zaiq";
+      username = "zaiq";
+      homeDirectory = "/home/zaiq";
     };
     
     home.packages = with pkgs; [
