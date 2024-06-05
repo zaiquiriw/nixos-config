@@ -116,14 +116,6 @@
           in import ./pkgs { inherit pkgs; }
         );
 
-      # TODO change this to something that has better looking output rules
-      # Nix formatter available through 'nix fmt' 
-      # https://nix-community.github.io/nixpkgs-fmt
-      # formatter = forAllSystems
-      #   (system:
-      #    nixpkgs.legacyPackages.${system}.nixpkgs-fmt
-      #   );
-
       ################################# Host/Machine Configurations ###########
 
       nixosConfigurations = {
@@ -132,7 +124,6 @@
         zephyr = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           modules = [
-          # Overlays-module makes "pkgs.unstable" available in configuration.nix
             ./hosts/zephyr
           ];
         };
@@ -153,7 +144,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {inherit inputs outputs;};
           modules = [
-            ./home/zaiq
+            ./users/zaiq
           ];
         };
       };

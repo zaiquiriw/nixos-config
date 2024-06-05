@@ -11,7 +11,7 @@
         environment.systemPackages = with pkgs; [
             git
             unstable.home-manager
-	    acpi
+	        acpi
         ];
 
         nix.settings.experimental-features = "nix-command flakes";

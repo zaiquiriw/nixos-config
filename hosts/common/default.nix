@@ -1,11 +1,19 @@
 # hosts/common/default.nix
 
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, outputs, ... }: {
     imports = [
-        ./common.nix
+        ./core.nix
 	    ./pipewire.nix
     ];
 
-    common.enable = lib.mkDefault true;
+    nixpkgs = {
+        # you can add global overlays here
+        overlays = builtins.attrValues outputs.overlays;
+        config = {
+        allowUnfree = true;
+        };
+    };
+
+    core.enable = lib.mkDefault true;
     pipewire.enable = lib.mkDefault true;
 }
