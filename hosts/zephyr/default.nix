@@ -23,6 +23,14 @@ in {
   #    };
   #  };
   #};
+  
+  nixpkgs.config.allowUnfree = true;
+
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   time.timeZone = lib.mkDefault "America/Chicago";
 

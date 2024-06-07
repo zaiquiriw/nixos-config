@@ -1,0 +1,29 @@
+[16:36:18] [main/WARN]: Unrecognized user type: 
+[16:36:19] [Render thread/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[16:36:20] [Render thread/ERROR]: Failed to verify authentication
+com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
+	at com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:56) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:132) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.<init>(YggdrasilUserApiService.java:44) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.createUserApiService(YggdrasilAuthenticationService.java:153) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	at dxo.a(SourceFile:670) [p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+	at dxo.<init>(SourceFile:424) [p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:197) [p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+Caused by: com.mojang.authlib.exceptions.MinecraftClientHttpException: Status: 401
+	at com.mojang.authlib.minecraft.client.MinecraftClient.readInputStream(MinecraftClient.java:78) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	at com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:48) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:113) ~[mlpv02wc1my4lrz21qck9ljxjmix6lmb-authlib-3.2.38.jar:?]
+	... 5 more
+[16:36:20] [Render thread/INFO]: Setting user: NixDude
+[16:36:20] [Render thread/INFO]: Backend library: LWJGL version 3.2.2 build 10
+[16:36:33] [Render thread/WARN]: Failed to create window: 
+drp$a: GLFW error 65545: GLX: Failed to find a suitable GLXFBConfig
+	at drp.b(SourceFile:218) ~[p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+	at org.lwjgl.glfw.GLFWErrorCallbackI.callback(GLFWErrorCallbackI.java:36) ~[g2wjvzbmas27jf2lk94j9pk1ayxhla68-lwjgl-glfw-3.2.2.jar:build 10]
+	at org.lwjgl.system.JNI.invokePPPP(Native Method) ~[p22p0imrg6brzvz9p8l03b8ys34rwz56-lwjgl-3.2.2.jar:build 10]
+	at org.lwjgl.glfw.GLFW.nglfwCreateWindow(GLFW.java:1714) ~[g2wjvzbmas27jf2lk94j9pk1ayxhla68-lwjgl-glfw-3.2.2.jar:build 10]
+	at org.lwjgl.glfw.GLFW.glfwCreateWindow(GLFW.java:1897) ~[g2wjvzbmas27jf2lk94j9pk1ayxhla68-lwjgl-glfw-3.2.2.jar:build 10]
+	at drp.<init>(SourceFile:92) ~[p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+	at eqa.a(SourceFile:21) ~[p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+	at dxo.<init>(SourceFile:476) ~[p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:197) [p19qr31agrs00zm8k8gn1x259kn7mxq4-client.jar:?]
