@@ -1,8 +1,24 @@
-{ lib, config, pkgs, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
 
   imports = [
     ./basic-binds.nix
+    inputs.ags.homeManagerModules.default
   ];
+
+  # GTK Theming library
+  programs.ags = {
+    enable = true;
+
+    # null or path, leave as null if you don't want hm to manage the config
+    configDir = ./ags;
+
+    # additional packages to add to gjs's runtime
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
 
   home.packages = with pkgs; [
     grimblast
@@ -37,25 +53,18 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
-    systemd = {
-      enable = true;
-      # Same as default, but stop graphical-session too
-      extraCommands = lib.mkBefore [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
-    };
 
     settings = {
+
+      "monitor" = ",highres,auto,1";
+
       "$mod" = "SUPER";
 
       bind = [
         "$mod, F, exec, firefox"
-	"$mod, T, exec, kitty"
-	"$mod, V, exec, code"
-	"$mod, O, exec, obsidian"
-
+        "$mod, T, exec, kitty"
+        "$mod, V, exec, code"
+        "$mod, O, exec, obsidian"
       ];
     };
   };

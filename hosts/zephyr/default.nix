@@ -12,25 +12,8 @@ in {
       ./hardware-configuration.nix
       ../common
     ];
-
-  # Access agenix secrets
-  # age = {
-  #  secrets = {
-  #    zaiqPassword = {
-  #      file = ./secrets/primary.age;
-  #      owner = "zaiq";
-  #      group = "zaiq";
-  #    };
-  #  };
-  #};
   
   nixpkgs.config.allowUnfree = true;
-
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
 
   time.timeZone = lib.mkDefault "America/Chicago";
 
@@ -48,7 +31,8 @@ in {
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland; 
   };
- environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
 
   # Test if vm works and git is installed
   users.users.zaiq = {

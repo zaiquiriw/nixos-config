@@ -4,7 +4,7 @@
 
 {
     imports = [
-      # ./features/desktop/hyprland
+      ./features/desktop
     ];
 
     home = {
@@ -15,13 +15,12 @@
     home.packages = with pkgs; [
         neovim
         git
-	firefox
+	      firefox
         kitty
         vscode
         discord
         obsidian
-	modrinth-app
-	minecraft
+        modrinth-app
     ];
     
     nixpkgs.config.allowUnfree = true;

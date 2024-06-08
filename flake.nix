@@ -44,6 +44,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    # A library for managing hyprland widgets
+    ags.url = "github:Aylur/ags";
+
     # Neovim built within Nix https://github.com/nix-community/nixvim
     nixvim = {
       #url = "github:nix-community/nixvim/nixos-23.11";
