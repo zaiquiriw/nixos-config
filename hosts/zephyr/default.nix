@@ -32,6 +32,11 @@ in {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland; 
   };
 
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
 
   # Test if vm works and git is installed
@@ -41,11 +46,6 @@ in {
     initialPassword = "test";
     # config.age.secrets.zaiqPassword.path;
   };
-
-  # Access inputs from the flake to add agenix
-  # environment.systemPackages = [
-  #  inputs.agenix.packages."${system}".default
-  # ];
 
   virtualisation.vmVariant = {
     # following configuration is added only when building VM with build-vm
@@ -62,12 +62,6 @@ in {
       };
     };
   };
-
-  # Copy config folder into etc of the new system
-  # environment.etc."nixos-config" = {
-  #  source = ../../flake.nix;
-  #  mode = "";
-  # };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

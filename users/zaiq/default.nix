@@ -1,11 +1,23 @@
 # users/zaiq/home.nix
 # Contains some basic home-manager configuration
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, outputs, lib, ... }:
 
 {
     imports = [
       ./features/hyprland
     ];
+
+    nixpkgs = {
+      overlays = [
+        outputs.overlays.unstable-packages
+      ];
+      config = {
+        allowUnfree = true;
+      };
+    };
+
+    # Configure optional features
+    hyprland.enable = lib.mkDefault false;
 
     home = {
       username = "zaiq";
@@ -17,13 +29,11 @@
         git
 	      firefox
         kitty
-        vscode
+        unstable.vscode
         discord
         obsidian
         modrinth-app
     ];
-    
-    nixpkgs.config.allowUnfree = true;
 
     home.sessionVariables = {
         EDITOR = "nvim";

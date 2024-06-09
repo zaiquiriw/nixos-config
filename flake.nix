@@ -54,6 +54,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ####################################### Sources and Inspiration ###########
 
       # EmergentMind  https://www.youtube.com/@Emergent_Mind
@@ -72,7 +77,8 @@
     nixpkgs-unstable, 
     home-manager, 
     sops-nix, 
-    hyprland, ... }: 
+    hyprland,
+    nixos-cosmic, ... }: 
     let
       
       ####################################### Convenience Utilities ###########
@@ -125,8 +131,17 @@
 
 
         zephyr = nixpkgs.lib.nixosSystem {
+          
           inherit specialArgs;
           modules = [
+            # These settings are used for cosmic
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
             ./hosts/zephyr
           ];
         };
