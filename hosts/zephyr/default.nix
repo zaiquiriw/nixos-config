@@ -6,7 +6,7 @@
 let 
   system = pkgs.system;
 
-in {
+in { 
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix

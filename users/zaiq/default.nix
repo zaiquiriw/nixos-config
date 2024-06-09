@@ -4,7 +4,7 @@
 
 {
     imports = [
-      ./features/desktop
+      ./features/hyprland
     ];
 
     home = {
