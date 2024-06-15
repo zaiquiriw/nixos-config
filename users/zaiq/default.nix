@@ -4,7 +4,10 @@
 
 {
     imports = [
-      ./features/hyprland
+      ./hyprland
+      ./themes
+      ./gnome
+      ./nixvim
     ];
 
     nixpkgs = {
@@ -18,6 +21,10 @@
 
     # Configure optional features
     hyprland.enable = lib.mkDefault false;
+    themes.enable = lib.mkDefault true;
+    gnome.enable = lib.mkDefault true;
+    extensions.enable = lib.mkDefault true;
+
 
     home = {
       username = "zaiq";
@@ -33,6 +40,9 @@
         discord
         obsidian
         modrinth-app
+        gimp
+        unstable.ollama
+        chromium
     ];
 
     home.sessionVariables = {

@@ -32,10 +32,9 @@ in {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland; 
   };
 
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  #services.desktopManager.cosmic.enable = true;
+  #services.displayManager.cosmic-greeter.enable = true;
 
-  services.gnome.gnome-keyring.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
 
