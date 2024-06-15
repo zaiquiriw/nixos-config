@@ -5,9 +5,11 @@
     ];
 
     options = {
-        nixvim.enable = lib.mkEnableOption "Nixvim, it's config scripts, and plugins";
+        themes.enable = lib.mkEnableOption "Nixvim, it's config scripts, and plugins";
     };
 
-    config = lib.mkIf config.nixvim.enable {
+    config = lib.mkIf config.themes.enable {
         # All of the actual config, can use extra options
     };
+
+}

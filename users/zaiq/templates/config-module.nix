@@ -12,3 +12,4 @@
     config = lib.mkIf config.MODULE.enable {
         # All of the actual config, can use extra options
     };
+}
