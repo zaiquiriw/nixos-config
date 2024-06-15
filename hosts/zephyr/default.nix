@@ -12,6 +12,10 @@ in {
       ./hardware-configuration.nix
       ../common
     ];
+
+  # Set modules with custom options
+  pipewire.enable = true;
+  gnome.enable = true;
   
   nixpkgs.config.allowUnfree = true;
 
@@ -21,20 +25,9 @@ in {
   services.openssh.enable = true;
   
   networking.networkmanager.enable = true;
-  
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
-
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland; 
-  };
 
   #services.desktopManager.cosmic.enable = true;
   #services.displayManager.cosmic-greeter.enable = true;
-
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
 

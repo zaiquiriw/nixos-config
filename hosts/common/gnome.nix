@@ -1,6 +1,6 @@
 {config, lib, pkgs, ...} : {
     options = {
-        gnome.enable = lib.mkEnableOption "Enable my core nix features";
+        gnome.enable = lib.mkEnableOption "Enable gnome, session manager, and gnome-keyring";
     };
 
     config = lib.mkIf config.gnome.enable {
@@ -33,7 +33,5 @@
             hitori # sudoku game
             atomix # puzzle game
         ]);
-}
     };
-
 }
