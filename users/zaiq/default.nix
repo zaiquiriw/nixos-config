@@ -20,9 +20,9 @@
     };
 
     # Configure optional features
-    hyprland.enable = lib.mkDefault false;
+    hyprland.enable = lib.mkDefault true;
     themes.enable = lib.mkDefault true;
-    gnome.enable = lib.mkDefault true;
+    gnome.enable = lib.mkDefault false;
     extensions.enable = lib.mkDefault true;
 
 
@@ -34,7 +34,7 @@
     home.packages = with pkgs; [
         neovim
         git
-	      firefox
+        firefox
         kitty
         unstable.vscode
         discord
@@ -43,6 +43,10 @@
         gimp
         unstable.ollama
         chromium
+        droidcam
+        obs-studio
+        quickemu
+        nixvim
     ];
 
     home.sessionVariables = {

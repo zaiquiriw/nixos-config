@@ -13,9 +13,25 @@ in {
       ../common
     ];
 
+  # Droidcam extra boot options
+  boot.kernelModules = [
+    "v4l2loopback" # Webcam loopback
+  ];
+  boot.extraModulePackages = [
+    pkgs.linuxPackages.v4l2loopback # Webcam loopback
+  ];
+  environment.systemPackages = with pkgs; [
+    v4l-utils
+    android-tools
+    adb-sync
+    vlc
+    libvlc
+  ];
+
   # Set modules with custom options
   pipewire.enable = true;
   gnome.enable = true;
+  hyprland.enable = true;
   
   nixpkgs.config.allowUnfree = true;
 

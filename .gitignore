@@ -2,3 +2,4 @@
 result
 hosts/*/secrets/*
 !hosts/*/secrets/readme.md
+windows-11

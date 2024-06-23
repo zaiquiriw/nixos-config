@@ -5,6 +5,7 @@
         ./core.nix
 	    ./pipewire.nix
         ./gnome.nix
+        ./hyprland.nix
     ];
 
     nixpkgs = {

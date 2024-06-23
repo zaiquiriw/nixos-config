@@ -1,6 +1,6 @@
 # hosts/common/core.nix
 
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
     options = {
         hyprland.enable =
             lib.mkEnableOption "Enable my core nix features";
