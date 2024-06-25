@@ -26,12 +26,13 @@ in {
     adb-sync
     vlc
     libvlc
+    brightnessctl # (brightnessctl set 5%-) -/+
   ];
 
   # Set modules with custom options
   pipewire.enable = true;
-  gnome.enable = true;
   hyprland.enable = true;
+  gnome.enable = true;
   
   nixpkgs.config.allowUnfree = true;
 
@@ -47,11 +48,15 @@ in {
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
 
-  # Test if vm works and git is installed
+  # Add shell support
+  programs.zsh.enable = true;
+
+  # Configure system users
   users.users.zaiq = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     initialPassword = "test";
+    shell = pkgs.zsh;
     # config.age.secrets.zaiqPassword.path;
   };
 
