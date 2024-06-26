@@ -139,6 +139,7 @@
         # https://discourse.nixos.org/t/home-manager-nerdfonts/11226
         (nerdfonts.override { fonts = [ "FiraCode"]; })
 	cachix
+	ventoy-full
     ];
 
     home.sessionVariables = {
