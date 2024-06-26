@@ -60,6 +60,9 @@ in {
     # config.age.secrets.zaiqPassword.path;
   };
 
+  # Add trusted users when using substituters for cachix
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+
   virtualisation.vmVariant = {
     # following configuration is added only when building VM with build-vm
     virtualisation = {
@@ -85,7 +88,7 @@ in {
      enable = true;
      efiSupport = true;
      # Check: lsblk -l
-     device = "/dev/nvme0n1";
+     device = "nodev";
   };
 };
 
