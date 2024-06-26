@@ -37,8 +37,7 @@
       enableZshIntegration = true;
       settings = {
 
-      }
-
+      };
     };
 
     programs.zsh = {
@@ -139,6 +138,7 @@
         devenv
         # https://discourse.nixos.org/t/home-manager-nerdfonts/11226
         (nerdfonts.override { fonts = [ "FiraCode"]; })
+	cachix
     ];
 
     home.sessionVariables = {
