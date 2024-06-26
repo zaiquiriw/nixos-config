@@ -9,12 +9,12 @@
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    hardware.url = "github:nixos/nixos-hardware";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
 
     ##################################################### Utilities ###########
@@ -54,11 +54,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ####################################### Sources and Inspiration ###########
 
       # EmergentMind  https://www.youtube.com/@Emergent_Mind
@@ -78,7 +73,7 @@
     home-manager, 
     sops-nix, 
     hyprland,
-    nixos-cosmic, ... }: 
+    nixos-hardware, ... }: 
     let
       
       ####################################### Convenience Utilities ###########
@@ -134,14 +129,8 @@
           
           inherit specialArgs;
           modules = [
-            # These settings are used for cosmic
-            {
-              nix.settings = {
-                substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-              };
-            }
-            nixos-cosmic.nixosModules.default
+	    # Include host configuration, and public hardware configuration
+            nixos-hardware.nixosModules.asus-zephyrus-ga503
             ./hosts/zephyr
           ];
         };
