@@ -35,6 +35,9 @@
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+
+      }
 
     };
 
@@ -77,7 +80,7 @@
     # https://nixos.wiki/wiki/Visual_Studio_Code
     programs.vscode = {
       enable = true;
-      package = pkgs.unstable.vscode.fhs;
+      package = pkgs.unstable.vscode;
       userSettings = {
         "editor.fontFamily" = "FiraCode Nerd Font Mono";
         "editor.fontLigatures" = true;

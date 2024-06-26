@@ -3,10 +3,10 @@
 # Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 { config, lib, pkgs, inputs, ... }:
-let 
+let
   system = pkgs.system;
 
-in { 
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -33,20 +33,20 @@ in {
   pipewire.enable = true;
   hyprland.enable = true;
   gnome.enable = true;
-  
+
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = lib.mkDefault "America/Chicago";
 
   # Add ssh support
   services.openssh.enable = true;
-  
+
   networking.networkmanager.enable = true;
 
   #services.desktopManager.cosmic.enable = true;
   #services.displayManager.cosmic-greeter.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Add shell support
   programs.zsh.enable = true;
@@ -64,8 +64,8 @@ in {
     # following configuration is added only when building VM with build-vm
     virtualisation = {
       memorySize =  4096; # Use 2048MiB memory.
-      cores = 3;   
-      sharedDirectories.userSSH = { 
+      cores = 3;
+      sharedDirectories.userSSH = {
         source = "/home/zaiq/.ssh";
         target = "/home/zaiq/.ssh";
       };
@@ -76,13 +76,25 @@ in {
     };
   };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Use the grub boot loader.
+  boot.loader = {
+  efi = {
+    canTouchEfiVariables = true;
+  };
+  grub = {
+     enable = true;
+     efiSupport = true;
+     # Check: lsblk -l
+     device = "/dev/nvme0n1";
+  };
+};
+
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
-  
+
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 
