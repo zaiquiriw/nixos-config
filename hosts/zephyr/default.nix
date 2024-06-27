@@ -90,6 +90,7 @@ in {
      efiSupport = true;
      # Check: lsblk -l
      device = "nodev";
+     userOSProber = true;
   };
 };
 
