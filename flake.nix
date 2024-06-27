@@ -16,7 +16,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-
     ##################################################### Utilities ###########
 
     sops-nix = {
@@ -130,8 +129,9 @@
           inherit specialArgs;
           modules = [
 	    # Include host configuration, and public hardware configuration
-            nixos-hardware.nixosModules.asus-zephyrus-ga503
+            # nixos-hardware.nixosModules.asus-zephyrus-ga503
             ./hosts/zephyr
+            inputs.disko.nixosModules.default 
           ];
         };
         
