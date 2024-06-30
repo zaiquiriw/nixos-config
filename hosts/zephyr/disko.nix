@@ -1,6 +1,6 @@
 # Used this example: https://github.com/nix-community/disko/commit/01ec6024d655430f252263969a46a64c2833eeb4
 # But I added a swap partition, a persistance subvolume, and a secure partition with an interactive password
-{ 
+{
   disko.devices = {
     disk = {
       main = {
@@ -20,7 +20,7 @@
                   "defaults"
                 ];
               };
-            };	    
+            };
 	    encryptedSwap = {
               size = "32G";
               content = {
@@ -33,7 +33,7 @@
               size = "8G";
 	      content = {
 	        type = "luks";
-		name = "crypted";
+		      name = "crypted";
 		passwordFile = "/tmp/secret.key";
 		settings = {
                   allowDiscards = true;

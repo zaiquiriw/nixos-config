@@ -121,7 +121,7 @@
     home.packages = with pkgs; [
         neovim
         git
-        firefox
+        (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
         kitty
         discord
         obsidian

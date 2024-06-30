@@ -30,6 +30,16 @@ in {
     brightnessctl # (brightnessctl set 5%-) -/+
   ];
 
+  # Screensharing https://nixos.wiki/wiki/Firefox
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+      ];
+    };
+  };
+
   # Set modules with custom options
   pipewire.enable = true;
   hyprland.enable = true;
@@ -90,7 +100,7 @@ in {
      efiSupport = true;
      # Check: lsblk -l
      device = "nodev";
-     userOSProber = true;
+     useOSProber = true;
   };
 };
 
