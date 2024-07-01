@@ -60,17 +60,7 @@
     programs.wezterm = {
       enable = true;
       enableZshIntegration = true;
-      extraConfig = ''
-        local config = {}
-
-        config.font = wezterm.font("FiraCode Nerd Font")
-        config.font_size = 16.0
-        config.hide_tab_bar_if_only_one_tab = true
-	config.window_background_opacity = .9
-
-        return config
-
-      '';
+      extraConfig = builtins.readFile ./wezterm.lua;
     };
 
     # https://discourse.nixos.org/t/home-manager-nerdfonts/11226
