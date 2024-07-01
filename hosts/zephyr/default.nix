@@ -28,6 +28,7 @@ in {
     vlc
     libvlc
     brightnessctl # (brightnessctl set 5%-) -/+
+    tree
   ];
 
   # Screensharing https://nixos.wiki/wiki/Firefox
