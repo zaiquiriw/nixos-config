@@ -9,6 +9,7 @@
       ./gnome
       ./nixvim
       ./starship.nix
+      ./starship-symbols.nix
       # Import an unstable program from the unstable input (wild I know)
       # (inputs.home-manager-unstable + "/modules/programs/direnv.nix")
     ];
