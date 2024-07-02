@@ -1,4 +1,4 @@
-# users/zaiq/home.nix
+# users/zaiq/default.nix
 # Contains some basic home-manager configuration
 { config, pkgs, inputs, outputs, lib, ... }:
 
@@ -45,7 +45,6 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
       shellAliases = {
         ll = "ls -l";
         update = "sudo nixos-rebuild switch";
