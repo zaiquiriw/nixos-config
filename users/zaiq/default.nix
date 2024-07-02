@@ -8,6 +8,9 @@
       ./themes
       ./gnome
       ./nixvim
+      ./starship.nix
+      # Import an unstable program from the unstable input (wild I know)
+      # (inputs.home-manager-unstable + "/modules/programs/direnv.nix")
     ];
 
     nixpkgs = {
@@ -29,24 +32,32 @@
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
-      nix-direnv.enable = true;
-      silent = true;
+      nix-direnv = {
+        enable = true;
+      };
+      config = {
+        # Uncomment to hide the wall of env differences when you cd
+        # hide_env_diff = true;
+      };
     };
 
     # https://starship.rs/guide/
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-
-      };
-    };
+    #programs.starship = {
+   #   enable = true;
+  #    enableZshIntegration = true;
+ #     settings = {
+#
+    #  };
+    #};
 
     programs.zsh = {
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      envExtra = ''
+        export DIRENV_LOG_FORMAT=$'\033[2mdirenv: %s\033[0m'
+      '';
       shellAliases = {
         ll = "ls -l";
         update = "sudo nixos-rebuild switch";
