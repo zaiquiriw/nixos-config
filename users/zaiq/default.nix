@@ -10,9 +10,12 @@
       ./nixvim
       ./starship.nix
       ./starship-symbols.nix
+      inputs.nix-colors.homeManagerModules.default
       # Import an unstable program from the unstable input (wild I know)
       # (inputs.home-manager-unstable + "/modules/programs/direnv.nix")
     ];
+
+    colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
     nixpkgs = {
       overlays = [
@@ -79,44 +82,6 @@
     # https://discourse.nixos.org/t/home-manager-nerdfonts/11226
     fonts.fontconfig.enable = true;
 
-    # To use vscode home manager config
-    # https://nixos.wiki/wiki/Visual_Studio_Code
-    programs.vscode = {
-      enable = true;
-      package = pkgs.unstable.vscode;
-      userSettings = {
-        "editor.fontFamily" = "FiraCode Nerd Font Mono";
-        "editor.fontLigatures" = true;
-        "editor.fontSize" = 16;
-        "editor.fontWeight" = "400";
-        "editor.lineHeight" = 24;
-        "editor.tabSize" = 2;
-        "editor.wordWrap" = "on";
-        "editor.formatOnSave" = true;
-        "editor.formatOnPaste" = true;
-        "editor.formatOnType" = true;
-        "editor.minimap.enabled" = false;
-        "editor.renderWhitespace" = "all";
-        "editor.rulers" = "[80, 120]";
-        "editor.snippetSuggestions" = "top";
-        "editor.suggestSelection" = "first";
-        "editor.wordWrapColumn" = 120;
-        "files.autoSave" = "afterDelay";
-        "files.autoSaveDelay" = 1000;
-        "files.trimTrailingWhitespace" = true;
-        "files.insertFinalNewline" = true;
-        "files.trimFinalNewlines" = true;
-        "files.associations" = {
-          "*.js" = "javascript";
-          "*.jsx" = "javascriptreact";
-          "*.ts" = "typescript";
-          "*.tsx" = "typescriptreact";
-        };
-        "workbench.colorTheme" = "Dracula";
-        "workbench.iconTheme" = "material-icon-theme";
-      };
-    };
-
     home = {
       username = "zaiq";
       homeDirectory = "/home/zaiq";
@@ -141,8 +106,14 @@
         devenv
         # https://discourse.nixos.org/t/home-manager-nerdfonts/11226
         (nerdfonts.override { fonts = [ "FiraCode"]; })
-	cachix
-	ventoy-full
+        (vscode-with-extensions.override {
+          vscodeExtensions = with vscode-extensions; [
+            bbenoist.nix
+          ];
+        })
+        unstable.vscode
+        cachix
+        ventoy-full
     ];
 
     home.sessionVariables = {

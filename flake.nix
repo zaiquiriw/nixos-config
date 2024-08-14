@@ -34,13 +34,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
+
     ########################################### Desktop Environment ###########
 
     # Dynamic tiling with Wayland https://hyprland.org/
     # They have a stable package but I'm okay using the unstable version
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
     };
 
     hyprland-plugins = {
@@ -55,6 +58,11 @@
     nixvim = {
       #url = "github:nix-community/nixvim/nixos-23.11";
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    my-nvim = {
+      url = "github:zaiquiriw/nvim-config";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -130,13 +138,21 @@
 
 
         zephyr = nixpkgs.lib.nixosSystem {
-          
           inherit specialArgs;
           modules = [
-	    # Include host configuration, and public hardware configuration
+	          # Include host configuration, and public hardware configuration
             # nixos-hardware.nixosModules.asus-zephyrus-ga503
             ./hosts/zephyr
             inputs.disko.nixosModules.default 
+          ];
+        };
+
+        apeirogon = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = [
+            nixos-hardware.nixosModules.asus-zephyrus-ga503
+            ./hosts/zephyr
+            inputs.disko.nixosModules.default
           ];
         };
         
@@ -157,6 +173,14 @@
           extraSpecialArgs = {inherit inputs outputs;};
           modules = [
             ./users/zaiq
+          ];
+        };
+
+        kit = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {inherit inputs outputs;};
+          modules = [
+            ./users/kit
           ];
         };
       };
