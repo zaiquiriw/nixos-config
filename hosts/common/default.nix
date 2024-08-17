@@ -7,6 +7,7 @@
 { config, pkgs, lib, ... }: {
     imports = [
         ./core.nix
+	./graphics
     ];
 
     core.enable = lib.mkDefault true;
