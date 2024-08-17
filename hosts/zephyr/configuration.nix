@@ -28,6 +28,11 @@
 
   # Copy config folder into etc of the new system
   environment.etc."nixos-config".source = ../..;
+  
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = false;
+  # Must be part of the whell group to edit wpa rules
+  networking.wireless.userControlled.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
