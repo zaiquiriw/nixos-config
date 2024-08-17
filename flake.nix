@@ -31,17 +31,9 @@
           modules = [
           # Overlays-module makes "pkgs.unstable" available in configuration.nix
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-            ./hosts/zephyr/configuration.nix  
+            ./hosts/zephyr/default.nix
           ];
-        };
-        theoreticalHost = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {inherit inputs;};
-          modules = [
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-            ./hosts/theoreticalHost/configuration.nix
-          ];
-        };
+        }; 
       };
 
       homeConfigurations = {
@@ -49,7 +41,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = {inherit inputs;};
           modules = [
-            ./users/zaiq/home.nix
+            ./users/zaiq/default.nix
           ];
         };
       };
