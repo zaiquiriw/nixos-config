@@ -1,47 +1,61 @@
-# hosts/zephyr/configuration.nix
+# hosts/zephyr/default.nix
 
-# Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+# Default settings for Zaiq's main computer. This file should simply import
+# external configuration and the very basic settings required by a laptop.
+# Otherwise, this file will simply turn on and off the common configurations
+# shared by hosts, but break out into separate files for this host if needed
+# if the settings differ from the shared default.
+
 { config, lib, pkgs, inputs, ... }:
 
-{
+{  
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-      ../../nixosModules
+      ./disko.nix 
+      ../common
     ];
 
-  # Test if vm works and git is installed
+  #-------------#
+  # SET OPTIONS #
+  #-------------# 
+
+  # Nothing yet
+
+  #-------------#
+  # USER CONFIG #
+  #-------------#
+
   users.users.zaiq = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     initialPassword = "test";
   };
 
+  # TODO Configure system resources when built as a vm in a separate file
   virtualisation.vmVariant = {
-    # following configuration is added only when building VM with build-vm
-    virtualisation = {
+      virtualisation = {
       memorySize =  4096; # Use 2048MiB memory.
       cores = 3;         
     };
-  };
-
-  # Copy config folder into etc of the new system
-  environment.etc."nixos-config".source = ../..;
+  }; 
   
+  #-------------#
+  #   NETWORK   #
+  #-------------#
+
+  # Turn on wifi management
   networking.networkmanager.enable = true;
-  networking.wireless.enable = false;
-  # Must be part of the whell group to edit wpa rules
-  networking.wireless.userControlled.enable = true;
+
+  #-------------#
+  # BOOT LOADER #
+  #-------------#
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  # Don't change, manages the default version of critical applications
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
