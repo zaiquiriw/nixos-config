@@ -12,7 +12,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./disko.nix 
+      # ./disko.nix TODO add disko (will be part of adding impermanance) 
       ../common
     ];
 
