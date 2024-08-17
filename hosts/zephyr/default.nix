@@ -20,7 +20,7 @@
   # SET OPTIONS #
   #-------------# 
 
-  # Nothing yet
+  graphics.enable = true;
 
   #-------------#
   # USER CONFIG #
