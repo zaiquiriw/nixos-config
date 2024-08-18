@@ -20,7 +20,9 @@
   # SET OPTIONS #
   #-------------# 
 
-  graphics.enable = true;
+  graphics.enable = false;
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
 
   #-------------#
   # USER CONFIG #
