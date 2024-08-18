@@ -16,9 +16,14 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-cosmic }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-cosmic, disko }:
     let
       inherit (self) outputs;
       system = "x86_64-linux";     
@@ -40,6 +45,7 @@
             }
 	    nixos-cosmic.nixosModules.default
             ./hosts/zephyr/default.nix
+	    inputs.disko.nixosModules.default
           ];
         }; 
       };
