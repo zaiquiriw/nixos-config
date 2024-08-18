@@ -21,8 +21,9 @@
   #-------------# 
 
   graphics.enable = false;
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
+  hardware.pulseaudio.enable = false;
 
   #-------------#
   # USER CONFIG #
