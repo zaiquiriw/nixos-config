@@ -11,9 +11,14 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-cosmic }:
     let
       inherit (self) outputs;
       system = "x86_64-linux";     
@@ -27,6 +32,13 @@
         zephyr = nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
+	    {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+	    nixos-cosmic.nixosModules.default
             ./hosts/zephyr/default.nix
           ];
         }; 
