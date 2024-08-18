@@ -3,7 +3,7 @@
     imports =[
         ./gnome
 	# ./hyprland
-	# ./cosmic
+	./cosmic
     ];
 
     options = {

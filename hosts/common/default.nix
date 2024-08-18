@@ -7,7 +7,7 @@
 { config, pkgs, lib, outputs, ... }: {
     imports = [
         ./core.nix
-	./graphics.nix
+	./graphics
     ];
 
     # All packages here will use overlays

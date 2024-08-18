@@ -20,9 +20,7 @@
   # SET OPTIONS #
   #-------------# 
 
-  graphics.enable = false;
-  # services.desktopManager.cosmic.enable = true;
-  # services.displayManager.cosmic-greeter.enable = true;
+  graphics.enable = true;
   hardware.pulseaudio.enable = false;
 
   #-------------#
@@ -54,9 +52,12 @@
   # BOOT LOADER #
   #-------------#
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    useOSProber = true;
+    device = "nodev";
+    efiSupport = true;
+  };
 
   # Don't change, manages the default version of critical applications
   system.stateVersion = "24.05"; # Did you read the comment?

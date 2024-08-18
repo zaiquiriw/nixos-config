@@ -1,6 +1,11 @@
-{config, lib, pkgs, ...} : {
+# /hosts/common/graphics/gnome.nix
+
+# This file configures everything required for gnome, the default DE for any
+# any configured machine
+
+{ config, lib, pkgs, ... } : {
     options = {
-        gnome.enable = lib.mkEnableOption "Enable all tools relevant to the gnome desktop environment";
+        gnome.enable = lib.mkEnableOption "All tools relevant to the gnome desktop environment";
     };
 
     config = lib.mkIf config.gnome.enable {
