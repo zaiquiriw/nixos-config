@@ -39,7 +39,8 @@
       homeConfigurations = {
         zaiq = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = {inherit inputs;};
+	  # Figure out why I had to put outputs here
+          extraSpecialArgs = {inherit inputs outputs;};
           modules = [
             ./users/zaiq/default.nix
           ];
