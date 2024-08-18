@@ -15,22 +15,18 @@
 
   outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager }:
     let
-      system = "x86_64-linux";
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-           inherit system;
-           config.allowUnfree = true;
-        };
+      inherit (self) outputs;
+      system = "x86_64-linux";     
+      
+      specialArgs = { inherit inputs outputs; };
 
-      };
     in {
+      overlays = import ./overlays { inherit inputs outputs; };
+
       nixosConfigurations = {
         zephyr = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {inherit inputs;};
+          inherit system specialArgs;
           modules = [
-          # Overlays-module makes "pkgs.unstable" available in configuration.nix
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./hosts/zephyr/default.nix
           ];
         }; 
