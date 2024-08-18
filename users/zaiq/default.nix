@@ -25,7 +25,7 @@
     # USER CONFIG #
     #-------------#
 
-    browsers.enable = true
+    browsers.enable = true;
 
     #-------------#
     # USER CONFIG #
