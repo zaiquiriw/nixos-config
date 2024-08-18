@@ -16,6 +16,21 @@
 { config, pkgs, inputs, outputs, lib, ... }:
 
 {
+    
+    imports = [
+        ./browsers.nix
+    ];
+
+    #-------------#
+    # USER CONFIG #
+    #-------------#
+
+    browsers.enable = true;
+
+    #-------------#
+    # USER CONFIG #
+    #-------------#
+
     # Basic user information
     home.username = "zaiq";
     home.homeDirectory = "/home/zaiq";
