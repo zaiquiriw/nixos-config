@@ -1,4 +1,4 @@
-{ config, pkgs, ... } : {
+{ pkgs, ... } : {
   home.packages = [
     pkgs.nixd
   ];
@@ -14,10 +14,10 @@
     vimAlias = true;
     vimdiffAlias = true;
     plugins = [
-      # pkgs.vimPlugins.something
+      pkgs.vimPlugins.nvim-lspconfig
     ];
     extraLuaConfig = ''
       ${builtins.readFile nvim/lspconfig.lua}
-    ''
+    '';
   };
 }

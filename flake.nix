@@ -23,7 +23,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-cosmic, disko }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, nixpkgs-unstable, disko }:
     let
       inherit (self) outputs;
       system = "x86_64-linux";     

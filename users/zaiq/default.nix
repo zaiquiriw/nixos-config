@@ -34,6 +34,7 @@
 
     # Basic user information
     home.username = "zaiq";
+    # TODO Get nixd to recognize homemanager packages
     home.homeDirectory = "/home/zaiq";
 
     # Configure nixpkgs to use the overlays, like the unstable version set up
@@ -43,7 +44,7 @@
 	    outputs.overlays.unstable-packages
 	];
 	config = {
-             # allowUnfree = true;
+             allowUnfree = true;
 	};
     };
   
