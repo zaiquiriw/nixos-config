@@ -1,9 +1,9 @@
 {config, lib, pkgs, ...} : {
     
     imports =[
-        ./gnome
-	# ./hyprland
-	./cosmic
+        ./gnome.nix
+	# ./hyprland.nix
+	./cosmic.nix
     ];
 
     options = {
