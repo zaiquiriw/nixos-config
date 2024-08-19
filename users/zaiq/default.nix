@@ -47,17 +47,6 @@
 	};
     };
   
-    # TODO Move to general packages file, with notes on files per application.
-    home.packages = [
-        pkgs.neovim
-        pkgs.git
-    ];
-
-    # TODO Transport to a console management file
-    home.sessionVariables = {
-        EDITOR = "nvim";
-    };
-
     # Have custom setting inputs per application, or in a central file
     home.file = {
         # Add some custom files here
