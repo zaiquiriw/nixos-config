@@ -20,6 +20,7 @@
     imports = [
         ./browsers.nix
 	./programming.nix
+	./packages.nix
     ];
 
     #-------------#
