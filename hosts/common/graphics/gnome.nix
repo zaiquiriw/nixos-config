@@ -12,7 +12,10 @@
         # Turn on xserver, gnome DE, and the gnome session manager gdm
 	services.xserver = {
             enable = true;
-	    displayManager.gdm.enable = true;
+	    displayManager.gdm = {
+                enable = true;
+		wayland = true;
+	    };
 	    desktopManager.gnome.enable = true;
 	};
     };
