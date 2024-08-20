@@ -21,7 +21,12 @@
   #-------------# 
 
   graphics.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   #-------------#
   # USER CONFIG #
@@ -57,6 +62,15 @@
     useOSProber = true;
     device = "nodev";
     efiSupport = true;
+  };
+
+  # Temporary local nextcloud setup
+  environment.etc."nextcloud-admin-pass".text = "123qwe!@#asd";
+  services.nextcloud = {
+    enable = true;
+    package = pkgs.nextcloud28;
+    hostName = "localhost";
+    config.adminpassFile = "/etc/nextcloud-admin-pass";
   };
 
   # Don't change, manages the default version of critical applications
