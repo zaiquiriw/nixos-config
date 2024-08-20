@@ -11,7 +11,7 @@
 {  
   imports =
     [
-      ./hardware-configurahartion.nix
+      ./hardware-configuration.nix
       ./disko.nix 
       ../common
     ];
