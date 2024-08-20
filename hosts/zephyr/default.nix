@@ -11,7 +11,7 @@
 {  
   imports =
     [
-      ./hardware-configuration.nix
+      ./hardware-configurahartion.nix
       ./disko.nix 
       ../common
     ];
@@ -29,6 +29,11 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  hardware.openrazer.enable = true;
+  environment.systemPackages = with pkgs; [
+    openrazer-daemon
+    polychromatic
+  ];
 
   #-------------#
   # USER CONFIG #
@@ -36,7 +41,7 @@
 
   users.users.zaiq = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "openrazer" ];
     initialPassword = "test";
   };
 
