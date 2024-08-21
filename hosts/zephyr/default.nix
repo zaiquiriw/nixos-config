@@ -73,16 +73,7 @@
     useOSProber = true;
     device = "nodev";
     efiSupport = true;
-  };
-
-  # Temporary local nextcloud setup
-  environment.etc."nextcloud-admin-pass".text = "123qwe!@#asd";
-  services.nextcloud = {
-    enable = false;
-    package = pkgs.nextcloud28;
-    hostName = "localhost";
-    config.adminpassFile = "/etc/nextcloud-admin-pass";
-  };
+  };  
 
   # Don't change, manages the default version of critical applications
   system.stateVersion = "24.05"; # Did you read the comment?
