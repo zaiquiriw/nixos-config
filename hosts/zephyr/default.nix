@@ -33,7 +33,10 @@
   environment.systemPackages = with pkgs; [
     openrazer-daemon
     polychromatic
+    qemu
+    quickemu
   ];
+
 
   #-------------#
   # USER CONFIG #
@@ -59,6 +62,7 @@
 
   # Turn on wifi management
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   #-------------#
   # BOOT LOADER #
@@ -74,7 +78,7 @@
   # Temporary local nextcloud setup
   environment.etc."nextcloud-admin-pass".text = "123qwe!@#asd";
   services.nextcloud = {
-    enable = true;
+    enable = false;
     package = pkgs.nextcloud28;
     hostName = "localhost";
     config.adminpassFile = "/etc/nextcloud-admin-pass";
