@@ -63,7 +63,9 @@
   # Turn on wifi management
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
+  # Configure via cups at localhost:631
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.brlaser ];
   services.avahi = {
     enable = true;
     nssmdns4 = true;
