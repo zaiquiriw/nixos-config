@@ -65,7 +65,14 @@
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
   # Configure via cups at localhost:631
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brlaser ];
+  services.printing.browsedConf = ''
+      BrowseDNSSDSubTypes _cups,_print
+      BrowseLocalProtocols all
+      BrowseRemoteProtocols all
+      CreateIPPPrinterQueues All 
+      BrowseProtocols all
+    '';
+  # services.printing.drivers = [ pkgs.brlaser ];
   services.avahi = {
     enable = true;
     nssmdns4 = true;
