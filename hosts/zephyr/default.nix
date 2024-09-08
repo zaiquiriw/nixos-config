@@ -37,6 +37,15 @@
     quickemu
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
 
   #-------------#
   # USER CONFIG #
@@ -61,8 +70,17 @@
   #-------------#
 
   # Turn on wifi management
-  networking.networkmanager.enable = true;
-  networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
+  networking = {
+    hostName = "nixie";
+    nameservers = [ "1.1.1.1" "8.8.8.8" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
+    # enableIPv6 = false;
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+    interfaces.enp3s0 = {
+    };
+  };
   # Configure via cups at localhost:631
   services.printing.enable = true;
   services.printing.browsedConf = ''

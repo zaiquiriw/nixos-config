@@ -7,5 +7,6 @@
     pkgs.hunspellDicts.en-us-large
     pkgs.pandoc
     pkgs.tectonic-unwrapped
+    pkgs.anki-bin
   ];
 }
