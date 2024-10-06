@@ -48,6 +48,19 @@
              allowUnfree = true;
 	};
     };
+
+  dconf.settings = {
+    "org/gnome/shell/keybindings" = {
+      show-screenshot-ui = ["<Shift><Super>s"];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screenshot = ["Print"];
+      screenshot-clip = ["<Ctrl>Print"];
+      window-screenshot = ["<Alt>Print"];
+      window-screenshot-clip = ["<Ctrl><Alt>Print"];
+    };
+  };
+
   
     # Have custom setting inputs per application, or in a central file
     home.file = {

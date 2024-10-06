@@ -35,6 +35,7 @@
     polychromatic
     qemu
     quickemu
+    mullvad
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -72,11 +73,9 @@
   # Turn on wifi management
   networking = {
     hostName = "nixie";
-    nameservers = [ "1.1.1.1" "8.8.8.8" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
     # enableIPv6 = false;
     networkmanager = {
       enable = true;
-      dns = "none";
     };
     interfaces.enp3s0 = {
     };
