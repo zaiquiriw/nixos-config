@@ -4,7 +4,7 @@ format = """
 [└─>](bold green) """
 
 [python]
-format = '[${symbol}(${version} )]($style)'
+format = '[${symbol}(${version})]($style)'
 symbol = "🐍 "
 style = "bold yellow"
 pyenv_version_name = true
