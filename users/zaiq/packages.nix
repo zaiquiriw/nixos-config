@@ -1,22 +1,6 @@
-{ pkgs, config, ... } :
-  let
-    customObsidian = pkgs.symlinkJoin {
-      name = "obsidian-with-python";
-      paths = [
-        pkgs.obsidian
-	(pkgs.python3.withPackages (ps: with ps; [
-	  jupyter
-	]))
-      ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/obsidian \
-	--prefix PATH : ${pkgs.python3}/bin
-      '';
-    };
-  in {
+{ pkgs, config, ... } : {
   home.packages = [
-    customObsidian
+    pkgs.obsidian
     pkgs.discord
     pkgs.libreoffice-qt
     pkgs.hunspell
