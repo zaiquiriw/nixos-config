@@ -1,12 +1,1 @@
-format = """
-[┌───────────────────>](bold green)
-[│](bold green)$directory$rust$package$python
-[└─>](bold green) """
 
-[python]
-format = '[${symbol}(${version})]($style)'
-symbol = "🐍 "
-style = "bold yellow"
-pyenv_version_name = true
-detect_extensions = ["py"]
-detect_files = ["requirements.txt", "pyproject.toml", "setup.py"]
