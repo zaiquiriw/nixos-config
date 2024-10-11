@@ -38,20 +38,6 @@
     quickemu
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
-  hardware = {
-    sane = {
-      enable = true;
-      brscan4 = {
-        enable = true;
-        netDevices = {
-          home = { model = "HL-L3290CDW"; ip = "192.168.000.138"; };
-        };
-      };
-    };
-  };
-
   #-------------#
   # USER CONFIG #
   #-------------#
