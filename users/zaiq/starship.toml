@@ -1,0 +1,7 @@
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = "🐍 "
+style = "bold yellow"
+pyenv_version_name = true
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "setup.py"]
