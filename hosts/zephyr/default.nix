@@ -6,12 +6,13 @@
 # shared by hosts, but break out into separate files for this host if needed
 # if the settings differ from the shared default.
 
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {  
   imports =
     [
       ./hardware-configuration.nix
+      <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
       ./disko.nix 
       ../common
     ];
@@ -35,18 +36,21 @@
     polychromatic
     qemu
     quickemu
-    mullvad
   ];
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  hardware = {
+    sane = {
+      enable = true;
+      brscan4 = {
+        enable = true;
+        netDevices = {
+          home = { model = "HL-L3290CDW"; ip = "192.168.000.138"; };
+        };
+      };
+    };
   };
-
 
   #-------------#
   # USER CONFIG #
@@ -54,9 +58,13 @@
 
   users.users.zaiq = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "openrazer" ];
+    extraGroups = [ "wheel" "openrazer" "scanner" "lp" ];
     initialPassword = "test";
+    shell = pkgs.zsh;
   };
+
+  programs.zsh.enable = true;
+
 
   # TODO Configure system resources when built as a vm in a separate file
   virtualisation.vmVariant = {
