@@ -1,5 +1,10 @@
+format = """
+[┌───────────────────>](bold green)
+[│](bold green)$directory$rust$package$python
+[└─>](bold green) """
+
 [python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[${symbol}(${version} )]($style)'
 symbol = "🐍 "
 style = "bold yellow"
 pyenv_version_name = true
