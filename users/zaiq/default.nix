@@ -29,6 +29,8 @@
 
     browsers.enable = true;
 
+    
+
     #-------------#
     # USER CONFIG #
     #-------------#
