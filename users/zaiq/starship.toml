@@ -1,6 +1,6 @@
 [nix_shell]
 format = '[$symbol]($style)'
-symbol = '❄️ '
+symbol = '❄️  '
 style = 'bold blue'
 impure_msg = ''
 pure_msg = ''
