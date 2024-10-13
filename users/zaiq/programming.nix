@@ -40,8 +40,16 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = [
-      pkgs.vimPlugins.nvim-lspconfig
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+      telescope-nvim
+      nvim-treesitter.withAllGrammars
+      lualine-nvim
+      gruvbox-nvim
+      nvim-cmp
+      cmp-nvim-lsp
+      luasnip
+      vim-tmux-navigator
     ];
     extraLuaConfig = ''
       ${builtins.readFile nvim/lspconfig.lua}
