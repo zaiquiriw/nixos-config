@@ -38,12 +38,12 @@ require('lualine').setup{
 }
 
 -- vim-tmux navigator config
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+vim.g.tmux_navigator_no_mappings = 1
+vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>', { silent = true })
+vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>', { silent = true })
+vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', { silent = true })
+vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', { silent = true })
+vim.keymap.set('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', { silent = true })
 
 -- Colorscheme
 vim.cmd('colorscheme gruvbox')
