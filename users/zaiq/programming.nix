@@ -1,6 +1,7 @@
 { pkgs, config, ... } : {
   home.packages = [
     pkgs.nixd
+    pkgs.tmux
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
