@@ -45,6 +45,12 @@ vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>', { silent = true })
 vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>', { silent = true })
 vim.keymap.set('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', { silent = true })
 
+-- Window Management
+vim.o.winwidth = 10
+vim.o.winminwidth = 10
+vim.o.equalalways = false
+require('windows').setup()
+
 -- Colorscheme
 vim.cmd('colorscheme gruvbox')
 

@@ -21,9 +21,11 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    jeezyvim.url = "github:LGUG2Z/JeezyVim";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, nixpkgs-unstable, disko }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, nixpkgs-unstable, disko, jeezyvim }:
     let
       inherit (self) outputs;
       system = "x86_64-linux";     

@@ -1,7 +1,13 @@
-{ pkgs, config, ... } : {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = [
     pkgs.nixd
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    pkgs.jeezyvim
+    pkgs.unstable.devenv
+    (pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
 
   programs.zsh = {
@@ -51,25 +57,26 @@
     '';
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
-      telescope-nvim
-      nvim-treesitter.withAllGrammars
-      lualine-nvim
-      gruvbox-nvim
-      nvim-cmp
-      cmp-nvim-lsp
-      luasnip
-      vim-tmux-navigator
-    ];
-    extraLuaConfig = ''
-      ${builtins.readFile nvim/lspconfig.lua}
-    '';
-  };
+  #programs.neovim = {
+  #enable = enable;
+  #defaultEditor = true;
+  #viAlias = true;
+  #vimAlias = true;
+  #vimdiffAlias = true;
+  #plugins = with pkgs.vimPlugins; [
+  #  nvim-lspconfig
+  #  telescope-nvim
+  #  nvim-treesitter.withAllGrammars
+  #  lualine-nvim
+  #  gruvbox-nvim
+  #  nvim-cmp
+  #  cmp-nvim-lsp
+  # luasnip
+  #  vim-tmux-navigator
+  #  windows-nvim
+  # ];
+  # extraLuaConfig = ''
+  #   ${builtins.readFile nvim/lspconfig.lua}
+  # '';
+  #};
 }

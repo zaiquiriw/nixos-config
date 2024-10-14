@@ -45,6 +45,7 @@
     nixpkgs = {
         overlays = [
 	    outputs.overlays.unstable-packages
+	    inputs.jeezyvim.overlays.default
 	];
 	config = {
              allowUnfree = true;

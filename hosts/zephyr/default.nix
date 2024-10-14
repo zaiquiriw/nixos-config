@@ -57,6 +57,10 @@
     shell = pkgs.zsh;
   };
 
+  nix.extraOptions = ''
+        trusted-users = root zaiq
+    '';
+
   programs.zsh.enable = true;
 
 
